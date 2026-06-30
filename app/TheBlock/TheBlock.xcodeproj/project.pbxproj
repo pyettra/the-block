@@ -1,0 +1,334 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A163AF3055D4B49050B4673 /* TheBlockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7E1E4863646A6EDF218D98 /* TheBlockApp.swift */; };
+		B27611F849B52E266DB24A4A /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055C7A6412BBB507AF7CEA5A /* Vehicle.swift */; };
+		0E5654E9259B574F86D85457 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C651EF19866254D151870 /* Bid.swift */; };
+		088527FB50945E34C1C36E47 /* AuctionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28578E94B0C7F174164FA96F /* AuctionStore.swift */; };
+		E1D398EB55F896DFC5ED62AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A554720FE930A1BB84D85 /* ContentView.swift */; };
+		8A8F8E4E4E094EDF39BA2B8C /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A6270E3FB23BB681972B8C /* BrowseView.swift */; };
+		9A20C41C11E4A50F11C74073 /* VehicleRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591BCD1C44E89B8A3BB3BEFC /* VehicleRowView.swift */; };
+		79B4214720DED61CDB865C3D /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F02107F0AC17D24ADAA218 /* VehicleDetailView.swift */; };
+		A1408C86695D3451A5CCC21F /* BidSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5ABD173D1812587C306B94 /* BidSheetView.swift */; };
+		3E494E88A8EE29D9EB0E340B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF3D967A3D5C600F0536678 /* FilterView.swift */; };
+		EBB1C9F8A1A6C0B894A1E92B /* MyBidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE5A4FF2046967AB30F759 /* MyBidsView.swift */; };
+		7E1169B1959B1CC9B65552DB /* vehicles.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F20B8DA4510AF8B4455DA75 /* vehicles.json */; };
+		99812033B8BD7CDC0C7E876A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC3340C45202B29152467289 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2C090C541E206D79AB76701F /* TheBlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C7E1E4863646A6EDF218D98 /* TheBlockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheBlockApp.swift; sourceTree = "<group>"; };
+		055C7A6412BBB507AF7CEA5A /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		EC5C651EF19866254D151870 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
+		28578E94B0C7F174164FA96F /* AuctionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionStore.swift; sourceTree = "<group>"; };
+		379A554720FE930A1BB84D85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		33A6270E3FB23BB681972B8C /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		591BCD1C44E89B8A3BB3BEFC /* VehicleRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleRowView.swift; sourceTree = "<group>"; };
+		97F02107F0AC17D24ADAA218 /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
+		BB5ABD173D1812587C306B94 /* BidSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidSheetView.swift; sourceTree = "<group>"; };
+		EFF3D967A3D5C600F0536678 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		6BCE5A4FF2046967AB30F759 /* MyBidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidsView.swift; sourceTree = "<group>"; };
+		3F20B8DA4510AF8B4455DA75 /* vehicles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vehicles.json; sourceTree = "<group>"; };
+		CC3340C45202B29152467289 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BC9136C2E1B992EF374A2EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D3FC6DB5D0827F168A73277 = {
+			isa = PBXGroup;
+			children = (
+				BB02FE6C4678B79B215868AF /* TheBlock */,
+				1BADDC1D73C1A20F347483E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1BADDC1D73C1A20F347483E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C090C541E206D79AB76701F /* TheBlock.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB02FE6C4678B79B215868AF /* TheBlock */ = {
+			isa = PBXGroup;
+			children = (
+				0C7E1E4863646A6EDF218D98 /* TheBlockApp.swift */,
+				E7651EE138212D3A5C27ABA0 /* Models */,
+				A28680D3E3CD8001077030DA /* ViewModels */,
+				9CECDDFA5EF2AE0232F90708 /* Views */,
+				DC01BA9E07F323C9FCA89BF3 /* Resources */,
+				CC3340C45202B29152467289 /* Assets.xcassets */,
+			);
+			path = TheBlock;
+			sourceTree = "<group>";
+		};
+		E7651EE138212D3A5C27ABA0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				055C7A6412BBB507AF7CEA5A /* Vehicle.swift */,
+				EC5C651EF19866254D151870 /* Bid.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A28680D3E3CD8001077030DA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				28578E94B0C7F174164FA96F /* AuctionStore.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9CECDDFA5EF2AE0232F90708 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				379A554720FE930A1BB84D85 /* ContentView.swift */,
+				33A6270E3FB23BB681972B8C /* BrowseView.swift */,
+				591BCD1C44E89B8A3BB3BEFC /* VehicleRowView.swift */,
+				97F02107F0AC17D24ADAA218 /* VehicleDetailView.swift */,
+				BB5ABD173D1812587C306B94 /* BidSheetView.swift */,
+				EFF3D967A3D5C600F0536678 /* FilterView.swift */,
+				6BCE5A4FF2046967AB30F759 /* MyBidsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC01BA9E07F323C9FCA89BF3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F20B8DA4510AF8B4455DA75 /* vehicles.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* TheBlock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F4B69E1C2D7780B6DE87DC8 /* Build configuration list for PBXNativeTarget "TheBlock" */;
+			buildPhases = (
+				F680599402C0D80E245DE801 /* Sources */,
+				6BC9136C2E1B992EF374A2EA /* Frameworks */,
+				781C774F390DF12CD292A30B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TheBlock;
+			productName = TheBlock;
+			productReference = 2C090C541E206D79AB76701F /* TheBlock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+			};
+			buildConfigurationList = 1EA27E9E5E6EF12D4FFF00B1 /* Build configuration list for PBXProject "TheBlock" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8D3FC6DB5D0827F168A73277;
+			productRefGroup = 1BADDC1D73C1A20F347483E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* TheBlock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		781C774F390DF12CD292A30B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1169B1959B1CC9B65552DB /* vehicles.json in Resources */,
+				99812033B8BD7CDC0C7E876A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F680599402C0D80E245DE801 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A163AF3055D4B49050B4673 /* TheBlockApp.swift in Sources */,
+				B27611F849B52E266DB24A4A /* Vehicle.swift in Sources */,
+				0E5654E9259B574F86D85457 /* Bid.swift in Sources */,
+				088527FB50945E34C1C36E47 /* AuctionStore.swift in Sources */,
+				E1D398EB55F896DFC5ED62AD /* ContentView.swift in Sources */,
+				8A8F8E4E4E094EDF39BA2B8C /* BrowseView.swift in Sources */,
+				9A20C41C11E4A50F11C74073 /* VehicleRowView.swift in Sources */,
+				79B4214720DED61CDB865C3D /* VehicleDetailView.swift in Sources */,
+				A1408C86695D3451A5CCC21F /* BidSheetView.swift in Sources */,
+				3E494E88A8EE29D9EB0E340B /* FilterView.swift in Sources */,
+				EBB1C9F8A1A6C0B894A1E92B /* MyBidsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6C81446AD7F76FA3F1FCD0BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2ABCC2DBEB6E0DC43435908C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		39D590ADCDE74882CC74E8ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theblock.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C52DE9DB66865FD8CD9E712E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theblock.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EA27E9E5E6EF12D4FFF00B1 /* Build configuration list for PBXProject "TheBlock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C81446AD7F76FA3F1FCD0BF /* Debug */,
+				2ABCC2DBEB6E0DC43435908C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F4B69E1C2D7780B6DE87DC8 /* Build configuration list for PBXNativeTarget "TheBlock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39D590ADCDE74882CC74E8ED /* Debug */,
+				C52DE9DB66865FD8CD9E712E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
