@@ -1,146 +1,129 @@
-<p align="center">
-  <img src="docs/the_block_repo.png" alt="The Block challenge hero image" width="960" />
-</p>
+# The Block — iOS
 
-# The Block
-
-### A coding challenge from OPENLANE
+A SwiftUI buyer-side vehicle auction app built for the OPENLANE coding challenge.
 
 ---
 
-OPENLANE powers one of the world's largest digital marketplaces for used vehicles. Every day, thousands of vehicles move through our platform - inspected, listed, auctioned, and sold. Your job is to interpret what we do and bring a working prototype to life.
+## How to Run
 
-We're hiring for a team that builds fast, thinks independently, and takes ownership. This challenge is part of that process.
+1. Open `TheBlock.xcodeproj` in Xcode (15 or later)
+2. Select a simulator — iPhone 17 Pro or any iOS 17+ device
+3. If building to a physical device, select your development team under **Signing & Capabilities**
+4. Press **Cmd+R**
 
-## The Challenge
+This is a self contained project so no dependencies, package manager, nor backend treatment was used.
 
-Build the **buyer side of a vehicle auction platform as a web or mobile application**. We've included a dataset of 200 vehicles in [`data/vehicles.json`](data/vehicles.json), each listed by a selling dealership.
+---
 
-A buyer should be able to browse inventory, inspect vehicle details, and place bids. That's the core experience. How you structure the product and how far you take it is up to you.
+## Time Spent
 
-## Core Requirements
+Using around 3 to 4 hours, I tried to focus on getting the core buyer experience. My main goal was to add the browsing mechanism (with filtering and sorting), the detailed vehicle view and the bidding experience. Some business logic such as meeting the minimum bid, the bid status and availability were core to make the app function as a proper auction. I chose to leave persistence and advanced filtering out of scope to stay within the timebox. Had Claude as a coding assistant to accelarate the scaffolding and developing of inital views and store, going through product and technical decisions as I was testing the final result.  
 
-- Browse and search the vehicle inventory
-- Vehicle detail views with specs, condition, damage notes, selling dealership, and photos
-- A bidding experience where a buyer can place bids on vehicles
-- A usable experience that works well on the platform you choose
-- Clear instructions in your README for how to run the project locally
+## Assumptions and Scope
 
-## Assumptions You Can Make
+**Included:**
+- Full inventory browsing with search, filtering, and sorting
+- Vehicle detail view with photos, specs, condition, damage notes, and dealership info
+- A bid flow with minimum enforcement, quick-pick suggestions, and live state feedback
+- Auction status normalization (Live / Upcoming / Ended) relative to current time
+- My Bids tab tracking all bids placed in the current session
 
-- This is a prototype, not a production launch.
-- Please spend no more than 3-4 hours of work on this. If you spend more, that's your call, but we do not expect a fully built marketplace.
-- Use any framework, language, or stack.
-- If you want stack examples that fit this challenge, React + Vite is a good web option, and SwiftUI for iOS or Compose for Android are reasonable native mobile examples. None of these are required.
-- You may use AI tools and coding assistants, and their use is encouraged. Be ready to explain how you used them, what decisions you made, and what parts of the implementation you would refine.
-- Authentication and user accounts are **not required**.
-- A frontend-only implementation is completely acceptable.
-- You do **not** need to build seller workflows, checkout, payments, or dealer admin tooling.
-- Auction timestamps in the dataset are synthetic scheduling data. If you want to show countdowns or "live" states, it's fine to normalize them relative to "now" in your prototype.
-- Make reasonable product decisions, document your assumptions, and optimize for clarity over surface area.
+**Skipped or simplified:**
+- No authentication or user accounts
+- No backend — all state is in-memory for the session
+- No bid persistence across app launches
+- No seller workflows, checkout, or payments
+- Auction timestamps are synthetic, so status is normalized (see Notable Decisions)
 
-## Minimum Bar
+## Stack
 
-At a minimum, we want to see:
+- **Platform:** iOS 17+
+- **Language:** Swift 5.9
+- **UI:** SwiftUI
+- **Architecture:** MVVM
+- **Data:** Local JSON bundle (`vehicles.json`), no network calls
+- **Backend:** None
+- **Database:** None
 
-- Inventory browsing and search
-- A clear vehicle detail experience
-- A bid flow with updated visible state
-- A usable experience on desktop and mobile
-- A repo we can clone and run by following your README
+## What I Built
 
-## Stretch Ideas
+A native iOS auction browsing experience where a buyer can explore 200 vehicles, inspect details, and place bids.
 
-These are optional. Only do them if the basics are solid.
+The app has two tabs: **Browse** shows the full inventory in a searchable, filterable, sortable list. With an arrow beside each vehicle cell, tapping a vehicle opens a detail view with a photo carousel, full specs, condition grade, damage notes, reserve and buy-now (if available) indicators, and a persistent bid bar at the bottom. Tapping "Place Bid" opens a sheet where the buyer enters an amount, sees quick-pick suggestions, and confirms. **My Bids** shows every bid placed in the session, with winning/outbid status and a tap-through back to the vehicle detail.
 
-- We care more about judgment than about any specific extra feature.
-- If you go beyond the basics, focus on improvements that make the buyer experience clearer, more useful, or more trustworthy.
-- That could show up in product decisions, UX details, implementation quality, or any other thoughtful extension that fits the timebox.
+## Notable Decisions
 
-## What to Submit
+### Architecture — single shared store
 
-1. **Fork this repo** to your own GitHub account
-2. Complete the challenge work in your fork
-3. Include a **README** in your repo with setup instructions and notable decisions
-4. When you're finished, share the link to your repo with your contact at **OPENLANE**
+I chose to go for a local store, `AuctionStore`, which served as my main view model. Having it as a `@MainActor ObservableObject`, I was able to inject it at the root via `@EnvironmentObject` and use it throughout the whole app (all pages where dependent of its data). It's responsible for the vehicle list, bid status, search text, filters, and sorting options. Since it's working as our view model, our views are going to read from it and write to it directly. I didn't feel the need, right now, to add separate view models for each screen. 
 
-We've included a [submission template](SUBMISSION.md) if you want a starting point.
+Keeping it local and responsible for all data, I aimed for simplicity: `filteredVehicles` is a single computed property that reacts to search, filter, and sort changes in one pass. `myBids` is also an array that keeps track of all bids placed inside the app and having them be displayed at the My Bids page. SwiftUI's reactive model means no explicit refresh calls anywhere. The tradeoff is that `AuctionStore` grows with the app, and in a larger codebase we would want to split concerns and have separate stores or specific services.
 
-We should be able to clone your repo and have it running locally by following your README.
+### Bid state — in-memory only
 
-## Timeline
+Bids are stored in three `[String: Int]` dictionaries keyed by vehicle ID: `bids`, `currentBids`, and `bidCounts`. These live for the duration of the app session, since we don't have persistency. My Bids works because both tabs share the same `AuctionStore` instance — it's not persisted anywhere.
 
-You have **5 days** from when you receive this challenge to submit it.
+One bid per vehicle is intentional: placing a new bid on the same vehicle replaces the previous one in the dictionary, since in a real auction only your highest bid matters to the seller.
 
-This is not a speed run. We care more about your decisions and tradeoffs than the total number of features.
+The tradeoff is concerning for production-readiness, since closing the app makes everything disappear. In a production version, bids would live on a backend, and the app would sync on launch. We would also need live updates, with subscriptions, for the lastest bids, number of bids, current bid and minimum bid value.
 
-## What Happens Next
+### Auction status normalization
 
-After you submit, we'll schedule a **45-60 minute walkthrough** where you'll screen-share and walk us through what you built. More details are in [`WALKTHROUGH.md`](WALKTHROUGH.md).
+All 200 auction timestamps in the dataset are synthetic past dates. If taken literally, every auction would already be over, making the prototype unusable. My first approach was to map the vehicle's time-of-day to today's date and its scheduled time. If a vehicle's auction time was set for 14:00, I would consider it as 14:00 of today. However, I had an issue since all the auction hours fall between 9am and 8pm, leaving me with a restrictive window to test different bid states: I'd only see Live bids between those hours, Upcoming before, and Ended after. 
 
-## How We Evaluate
+Given that, I decided to go through another route: using a deterministic hash of each vehicle's ID to assign a fixed offset related to now. This would spread the auctions across a 28 hour window, regardless of time of day. This way I'm able to test Live, Upcoming, and Ended
+states every time the app is opened. 
 
-We're not checking boxes. Here's what we care about:
+The consequence is that "Ending Soon" sort currently sorts by the raw JSON timestamp rather than normalized status, so Ended vehicles still appear in the list. That's a known gap (see What I'd Do With More Time).
 
-| | What we're looking at |
-|---|---|
-| **Product thinking** | Did you make smart decisions about what to build and how it should work? Does the UX make sense? |
-| **Craft** | Does it look and feel intentional? The details matter - design, layout quality, polish. |
-| **Technical quality** | Is the code clean, well-structured, and easy to follow? |
-| **Judgment** | Did you scope the work well for the time budget and make sensible tradeoffs? |
-| **Workflow** | Can you walk us through how you built it and why? (assessed in the walkthrough) |
+### Bid restrictions by auction status
 
-## The Data
+The Place Bid button is replaced by a contextual non-interactive bar depending on status:
+- **Live** → orange "Place Bid" button
+- **Upcoming** → "Bidding opens [relative time]"
+- **Ended** → "Auction ended"
 
-The vehicle dataset is at [`data/vehicles.json`](data/vehicles.json). Each vehicle includes:
+The bid sheet is non-tapable for non-live auctions at the UI level. This doesn't enforce anything at the data layer (there's no backend), but it's the right UX constraint for a prototype.
 
-- Lot number, VIN, make, model, year, and trim
-- Specs (engine, transmission, drivetrain, fuel type, odometer)
-- Condition (grade, report, damage notes, title status)
-- Auction details (starting bid, reserve price, buy now price, auction start time)
-- Current bid and bid count (some vehicles already have active bids)
-- Location (city and province)
-- Selling dealership
-- Placeholder image URLs
+### Bid minimum enforcement and input formatting
 
-Here's what a single vehicle looks like:
+I wanted to give more of a realistic touch of bidding, so minimum bids now follow an increment: $100 under $5K, $250 under $15K, $500 under $50K, $1,000 above. The bid sheet shows the minimum, offers three quick-pick amounts (following the increments), and uses a `.onChange` formatter to apply grouping separators as the user types. If the bid is below the minimum value, we'll show a warning message about it and it only appears when the user is activily typing the bid. The confirm button is disabled below the minimum.
 
-```json
-{
-  "id": "3cc3b89e-68b0-479e-af39-bca6251ea0b4",
-  "vin": "TRD7L1KS0HNB5X3K3",
-  "year": 2023,
-  "make": "Ford",
-  "model": "Bronco",
-  "trim": "Big Bend",
-  "body_style": "SUV",
-  "exterior_color": "Burgundy",
-  "interior_color": "Beige",
-  "engine": "2.7L EcoBoost V6",
-  "transmission": "automatic",
-  "drivetrain": "4WD",
-  "odometer_km": 47731,
-  "fuel_type": "gasoline",
-  "condition_grade": 3.8,
-  "condition_report": "Average condition. Has some visible wear on high-touch surfaces. Engine and transmission perform within normal parameters.",
-  "damage_notes": [
-    "Scratch on liftgate",
-    "Minor rust on wheel wells",
-    "Paint peeling on roof rack"
-  ],
-  "title_status": "clean",
-  "province": "Ontario",
-  "city": "Toronto",
-  "auction_start": "2026-04-05T14:00:00",
-  "starting_bid": 14500,
-  "reserve_price": 25000,
-  "buy_now_price": null,
-  "images": ["https://placehold.co/800x600?text=2023+Ford+Bronco+Photo+1", "..."],
-  "selling_dealership": "King City Auto",
-  "lot": "A-0043",
-  "current_bid": 22800,
-  "bid_count": 16
-}
-```
+I had one issue with data updates: placing a bid updates `AuctionStore` synchronously, which triggers the necessary re-render on SwiftUI before the successful bid state is set. This caused the minimum-bid warning to appear rapidly after the confirmation, and also for the Current Bid and Minimium Bid values to update unwantedly. The fix was to snapshot the pre-bid values and set all state changes in the same synchronous block so they batch into a single re-render.
 
-The data is synthetic but meant to feel realistic. Use it however you want. Should you need reasonable accommodation, please reach out to careers@openlane.com
+### Reserve price — visibility
+
+Buyers can see whether the reserve has been met or not, but not its value. This mirrors how most real vehicle auctions work — the reserve is a seller-side threshold, not buyer-facing information.
+
+### Buy Now price
+
+Shown as an informational indicator when present. The label disappears once the current bid meets or exceeds the buy-now price. No "Buy Now" action was implemented and I'm treating it as a regular bid for now. It would be interesting to have a "Buy Now" button for more straightfoward acquisition.
+
+### Image loading
+
+Images are loaded on demand via `AsyncImage` from `placehold.co`. The URLs required a `.png` extension to force PNG responses — the default SVG responses are not supported by `UIImage` / `AsyncImage`. No caching layer was added; images reload on scroll.
+
+
+## Testing
+
+Manual testing on iPhone 17 Pro simulator (iOS 26.5). Tested:
+- Browsing, searching, filtering, and sorting across all 200 vehicles
+- Vehicle detail view across vehicles with and without reserve price, buy-now price, and damage notes
+- Bid placement, minimum enforcement, and quick-pick amounts
+- Winning/outbid state transitions
+- Auction status display across Live, Upcoming, and Ended vehicles
+- My Bids tab state after placing multiple bids across different vehicles
+
+No automated tests were written within the timebox.
+
+## What I'd Do With More Time
+
+- **Filter ended auctions from the default list** — the Ending Soon sort should exclude Ended vehicles and surface Live ones first, using normalized status rather than raw JSON timestamps
+- **Persist bids across launches** — SwiftData would be the natural fit here, replacing the in-memory dictionaries with a proper local store
+- **Image caching** — avoid reloading placeholder images on every scroll with `NSCache` or a lightweight caching layer over `AsyncImage`
+- **Reserve and Buy Now education** — a tooltip or popover explaining what these values mean to first-time buyers
+- **Buy Now action** — a dedicated "Buy Now" button that bypasses the bid flow and sets a "Sold" state on the vehicle
+- **Reserve value visibility** — consider showing the reserve amount once it's been met, as confirmation for the buyer
+- **Map links** — tapping the dealership location could deep-link to Apple Maps
+- **Simpler bid sheet header** — the full vehicle title takes up space; a shorter lot + year/make/model line would be cleaner
+- **Bid undo window** — a short grace period (e.g. 5 seconds) to cancel an accidental bid before it commits
